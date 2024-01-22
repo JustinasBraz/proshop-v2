@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import Rating from '../components/Rating';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 import Loader from '../components/Loader';
 import { useGetProductDetailsQuery, useCreateReviewMutation } from '../slices/productsApiSlice';
 import { addToCart } from '../slices/cartSlice';
@@ -64,9 +65,10 @@ import { addToCart } from '../slices/cartSlice';
         <Message variant='danger'>{error?.data?.message || error.error}</Message>
       ) : ( 
         <>
+        <Meta title={product.name} />
         <Row>
         <Col md= {5}> 
-        <Image src= {product.image} alt={product.name} fluid />
+        <Image src={product.image} alt={product.name} fluid />
         </Col>
         <Col md= {4}> 
         <ListGroup variant='flush'>

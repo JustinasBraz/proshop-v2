@@ -1,10 +1,11 @@
 
 import { Row, Col } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Product from '../components/Product';
 import  Loader  from '../components/Loader';
 import Message from '../components/Message';
 import Paginate from '../components/Paginate';
+import ProductCarousel from '../components/ProductCarousel';
 import { useGetProductsQuery } from '../slices/productsApiSlice';
 
 const HomeScreen = () => {
@@ -14,10 +15,15 @@ const HomeScreen = () => {
 const { data, isLoading, error } = useGetProductsQuery({ keyword,  pageNumber, });
   return (
     <>
+    {!keyword  ?  ( 
+    <ProductCarousel /> 
+     ) : (
+       <Link to='/' className='btn btn-light mb-4'>Go Back</Link> )}
     { isLoading ? (
       <Loader />
     ) : error ? (<Message variant='danger'>{ error?.data?.message || error.error }</Message>) : (
     <> 
+    
     <h1>Latest Products</h1>
     <Row>
         {data.products.map((product) => (
