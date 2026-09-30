@@ -1,6 +1,7 @@
 import path from 'path';
 import express from 'express';
 import multer from 'multer';
+import { protect, admin } from '../middleware/authMiddleware.js';
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -28,12 +29,25 @@ function checkFileType(file, cb) {
 
   const upload = multer({
     storage,
+    fileFilter(req, file, cb) {
+      checkFileType(file, cb);
+    },
   });
-  
-  router.post('/', upload.single('image'), (req, res) => {
-    res.send({
-      message: 'Image Uploaded',
-      image: `/${req.file.path}`,
+
+  const uploadSingleImage = upload.single('image');
+
+  router.post('/', protect, admin, (req, res) => {
+    uploadSingleImage(req, res, (err) => {
+      if (err) {
+        return res.status(400).send({ message: err.message || err });
+      }
+      if (!req.file) {
+        return res.status(400).send({ message: 'No image file provided' });
+      }
+      res.send({
+        message: 'Image Uploaded',
+        image: `/${req.file.path}`,
+      });
     });
   });
   

@@ -24,10 +24,10 @@ const { data, isLoading, error } = useGetProductsQuery({ keyword,  pageNumber, }
     ) : error ? (<Message variant='danger'>{ error?.data?.message || error.error }</Message>) : (
     <> 
     
-    <h1>Latest Products</h1>
-    <Row>
+    <h1 className="koffiehuis-heading">Our Coffee</h1>
+    <Row className="product-grid">
         {data.products.map((product) => (
-            <Col key={product._id} sm={12} md={6} xl={3}>
+            <Col key={product._id} sm={12} md={6} xl={3} className="product-col">
              <Product product={product} />
             </Col>
         ))}

@@ -1,5 +1,272 @@
+/* Coffee House Theme */
+:root {
+  --dutch-blue: #1E3A5F;
+  --dutch-orange: #FF6B35;
+  --dutch-cream: #F5F0E8;
+  --dutch-brown: #6F4E37;
+  --delft-blue: #0D3B66;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--dutch-cream);
+}
+
+h1, h2, h3 {
+  font-family: 'Crimson Pro', serif;
+  color: var(--dutch-blue);
+}
+
+/* Header & Navbar */
+.koffiehuis-navbar {
+  background: linear-gradient(135deg, var(--dutch-blue) 0%, var(--delft-blue) 100%) !important;
+  box-shadow: 0 2px 8px rgba(30, 58, 95, 0.2);
+}
+
+.koffiehuis-navbar .navbar-nav .nav-link {
+  color: var(--dutch-cream) !important;
+  font-weight: 500;
+}
+
+.koffiehuis-navbar .navbar-nav .nav-link:hover {
+  color: var(--dutch-orange) !important;
+}
+
+.koffiehuis-brand {
+  font-family: 'Crimson Pro', serif !important;
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  color: var(--dutch-cream) !important;
+}
+
+/* Coffee logo - original emoji cup + animated steam only */
+.coffee-logo {
+  display: inline-block;
+  position: relative;
+  margin-right: 0.5rem;
+  color: var(--dutch-cream);
+}
+
+.coffee-cup-emoji {
+  font-size: 1.5rem;
+  line-height: 1;
+  display: block;
+}
+
+.coffee-steam-svg {
+  position: absolute;
+  bottom: 55%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.coffee-logo .steam {
+  animation: steamRise 5s ease-in-out infinite;
+  color: var(--dutch-cream);
+  transform-origin: center bottom;
+}
+
+.coffee-logo .steam-1 {
+  animation-delay: 0s;
+}
+
+.coffee-logo .steam-2 {
+  animation-delay: 0.6s;
+}
+
+.coffee-logo .steam-3 {
+  animation-delay: 1.2s;
+}
+
+@keyframes steamRise {
+  0% {
+    opacity: 0.15;
+    transform: translateY(1px);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 0.15;
+    transform: translateY(-8px);
+  }
+}
+
+/* Legacy brand-icon for any other uses */
+.brand-icon {
+  margin-right: 0.4rem;
+  font-size: 1.4rem;
+}
+
+/* Coffee House - letter by letter orange glow animation (looping) */
+.brand-letters {
+  display: inline;
+}
+
+.brand-letter {
+  display: inline-block;
+  animation: letterGlow 3.5s ease-in-out infinite;
+}
+
+@keyframes letterGlow {
+  0%, 100% {
+    color: var(--dutch-cream);
+    text-shadow: none;
+  }
+  50% {
+    color: var(--dutch-orange);
+    text-shadow: 0 0 6px rgba(255, 107, 53, 0.4);
+  }
+}
+
+.koffiehuis-badge {
+  background-color: var(--dutch-orange) !important;
+}
+
+.koffiehuis-navbar .nav-link {
+  color: var(--dutch-cream) !important;
+}
+
+.koffiehuis-navbar .dropdown-menu {
+  background: var(--dutch-cream);
+  border: 1px solid rgba(30, 58, 95, 0.2);
+}
+
+.koffiehuis-navbar .dropdown-item {
+  color: var(--dutch-blue);
+}
+
+.koffiehuis-navbar .dropdown-item:hover {
+  background: rgba(30, 58, 95, 0.08);
+  color: var(--dutch-orange);
+}
+
+.koffiehuis-navbar .dropdown-toggle {
+  color: var(--dutch-cream) !important;
+}
+
+/* Cards - organic, softer design */
+.card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(30, 58, 95, 0.06);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 24px rgba(30, 58, 95, 0.12);
+}
+
+/* Product grid - tighter gaps, cards flow together */
+.product-grid {
+  --bs-gutter-x: 0.75rem;
+  --bs-gutter-y: 0.75rem;
+}
+
+.product-col > * {
+  margin-bottom: 0;
+}
+
+.product-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-bottom: 0;
+  padding: 0;
+  border-radius: 16px;
+}
+
+.product-card .card-img-top {
+  height: 220px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 16px 16px 0 0;
+}
+
+.product-card .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Carousel */
+.koffiehuis-carousel {
+  background: linear-gradient(135deg, var(--dutch-blue) 0%, var(--delft-blue) 100%);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Carousel arrows - white by default, orange on hover */
+.koffiehuis-carousel .carousel-control-prev-icon,
+.koffiehuis-carousel .carousel-control-next-icon {
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.koffiehuis-carousel .carousel-control-prev:hover .carousel-control-prev-icon,
+.koffiehuis-carousel .carousel-control-next:hover .carousel-control-next-icon {
+  filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(346deg) brightness(102%) contrast(101%);
+  transform: scale(1.1);
+}
+
+.koffiehuis-carousel .carousel-caption h2 {
+  color: var(--dutch-cream);
+  font-family: 'Crimson Pro', serif;
+}
+
+/* Carousel indicators (dots) - orange */
+.koffiehuis-carousel .carousel-indicators button {
+  background-color: var(--dutch-orange) !important;
+  opacity: 0.7;
+}
+
+.koffiehuis-carousel .carousel-indicators button.active {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.carousel-caption {
+  background: linear-gradient(to top, rgba(30, 58, 95, 0.9), transparent) !important;
+  padding: 1.5rem;
+}
+
+/* Navbar dropdown */
+.koffiehuis-navbar .dropdown-menu {
+  background: var(--dutch-cream);
+  border: 1px solid rgba(30, 58, 95, 0.1);
+}
+
+.koffiehuis-navbar .dropdown-item {
+  color: var(--dutch-blue);
+}
+
+.koffiehuis-navbar .dropdown-item:hover {
+  background: rgba(30, 58, 95, 0.08);
+  color: var(--dutch-orange);
+}
+
+.koffiehuis-navbar .dropdown-toggle {
+  color: var(--dutch-cream) !important;
+}
+
+/* Footer */
+.koffiehuis-footer {
+  background: linear-gradient(135deg, var(--dutch-blue) 0%, var(--delft-blue) 100%);
+  color: var(--dutch-cream);
+}
+
 main {
   min-height: 80vh;
+  background-color: var(--dutch-cream);
 }
 
 .rating span {

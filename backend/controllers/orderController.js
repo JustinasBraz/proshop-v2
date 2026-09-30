@@ -1,4 +1,3 @@
-import { json } from "express";
 import asyncHandler from "../middleware/asyncHandler.js";
 import Order from "../models/orderModel.js";
 
@@ -7,8 +6,8 @@ import Order from "../models/orderModel.js";
 // @route POST/api/orders
 // @access Private
 const addOrderItems = asyncHandler(async (req, res) => {
-const {oredrItems,
-shippingAdress,
+const {orderItems,
+shippingAddress,
 paymentMethod,
 itemsPrice, 
 taxPrice,
@@ -16,18 +15,19 @@ shippingPrice,
 totalPrice
 } = req.body;
 
-if (oredrItems && oredrItems.length === 0){
+if (orderItems && orderItems.length === 0){
      res.status(400);
      throw new Error('No order items');
 } else {
-     const order = new order({
+     const order = new Order({
        orderItems: orderItems.map((x) => ({
           ...x,
           product: x._id,
           _id: undefined
 
        })),
-       shippingAdress,
+       user: req.user._id,
+       shippingAddress,
        paymentMethod,
        itemsPrice,
        taxPrice,
@@ -52,9 +52,13 @@ res.status(201).json(orders)
 // @route POST/api/orders/:id
 // @access Private
 const getOrderById = asyncHandler(async (req, res) => {
-const order = await Order.findById(req.param.id).populate('user', 'name email');
+const order = await Order.findById(req.params.id).populate('user', 'name email');
 
 if (order) {
+     if (order.user._id.toString() !== req.user._id.toString() && !req.user.isAdmin) {
+          res.status(403);
+          throw new Error('Not authorized to view this order');
+     }
      res.status(201).json(order);
 } else {
      res.status(404);
@@ -66,11 +70,15 @@ if (order) {
 // @route GET/api/orders/:id/pay
 // @access Private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
-          const  order = await Order.findById(req, params.id);
+          const  order = await Order.findById(req.params.id);
           if (order) {
+               if (order.user.toString() !== req.user._id.toString() && !req.user.isAdmin) {
+                    res.status(403);
+                    throw new Error('Not authorized to pay for this order');
+               }
                order.isPaid = true;
                order.paidAt = Date.now();
-               order.paymentresult = {
+               order.paymentResult = {
                     id: req.body.id,
                     status: req.body.status,
                     update_time: req.body.update_time,
@@ -93,14 +101,14 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 // @route GET/api/orders/:id/deliver
 // @access Private/Admin
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
-const  order = await Order.findById(req, params.id);
+const  order = await Order.findById(req.params.id);
 if (order) {
      order.isDelivered = true;
-     order.delivereddAt = Date.now();
+     order.deliveredAt = Date.now();
     
      const updateOrder = await order.save();
 
-     res.status(200).json(updatedOrder);
+     res.status(200).json(updateOrder);
 } else {
 
      res.status(404);

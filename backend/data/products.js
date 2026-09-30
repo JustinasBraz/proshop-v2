@@ -1,82 +1,76 @@
 const products = [
   {
-    
-    name: 'Airpods Wireless Bluetooth Headphones',
-    image: '/images/airpods.jpg',
+    name: 'Ethiopian Yirgacheffe',
+    image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600',
     description:
-      'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
-    brand: 'Apple',
-    category: 'Electronics',
-    price: 89.99,
-    countInStock: 10,
+      'Aromatic and floral single-origin coffee from Ethiopia. Light body with citrus and jasmine notes. Perfect for pour-over or filter brewing.',
+    brand: 'Dutch Roast',
+    category: 'Single Origin',
+    price: 12.99,
+    countInStock: 25,
+    rating: 4.8,
+    numReviews: 34,
+  },
+  {
+    name: 'Colombian Supremo',
+    image: 'https://images.unsplash.com/photo-1562051036-e0eea191d42f?w=600',
+    description:
+      'Balanced medium roast from the Colombian highlands. Smooth caramel sweetness with nutty undertones. Ideal for espresso or French press.',
+    brand: 'Dutch Roast',
+    category: 'Single Origin',
+    price: 10.99,
+    countInStock: 30,
+    rating: 4.6,
+    numReviews: 28,
+  },
+  {
+    name: 'Dutch Blend Classic',
+    image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600',
+    description:
+      'Our signature house blend inspired by Amsterdam café tradition. Dark roasted beans with hints of chocolate and dried fruit. Rich and full-bodied.',
+    brand: 'Dutch Roast',
+    category: 'Blend',
+    price: 9.99,
+    countInStock: 50,
+    rating: 4.9,
+    numReviews: 67,
+  },
+  {
+    name: 'Sumatra Mandheling',
+    image: 'https://images.unsplash.com/photo-1685798830559-c116586a0d33?w=600',
+    description:
+      'Heavy body and low acidity. Earthy, herbal flavors with a syrupy finish. A favorite among Dutch coffee lovers for its bold character.',
+    brand: 'Dutch Roast',
+    category: 'Single Origin',
+    price: 13.99,
+    countInStock: 18,
     rating: 4.5,
-    numReviews: 12,
+    numReviews: 22,
   },
   {
-  
-    name: 'iPhone 11 Pro 256GB Memory',
-    image: '/images/phone.jpg',
+    name: 'Tulip Espresso',
+    image: 'https://images.unsplash.com/photo-1605711599412-775918dbe770?w=600',
     description:
-      'Introducing the iPhone 11 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life',
-    brand: 'Apple',
-    category: 'Electronics',
-    price: 599.99,
-    countInStock: 7,
-    rating: 4.0,
-    numReviews: 8,
+      'Premium Italian-style espresso blend. Dark roast with crema-promising beans. Named after the iconic Dutch tulip—intense, beautiful, unforgettable.',
+    brand: 'Dutch Roast',
+    category: 'Espresso',
+    price: 14.99,
+    countInStock: 20,
+    rating: 4.7,
+    numReviews: 41,
   },
   {
-  
-    name: 'Cannon EOS 80D DSLR Camera',
-    image: '/images/camera.jpg',
+    name: 'Decaf Delft Blue',
+    image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=600',
     description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-    brand: 'Cannon',
-    category: 'Electronics',
-    price: 929.99,
-    countInStock: 5,
-    rating: 3,
-    numReviews: 12,
+      'Smooth Swiss water decaffeinated coffee. Inspired by Delft pottery—subtle, refined, and elegant. Enjoy any time without compromise.',
+    brand: 'Dutch Roast',
+    category: 'Decaf',
+    price: 11.99,
+    countInStock: 35,
+    rating: 4.4,
+    numReviews: 19,
   },
-  {
-    
-    name: 'Sony Playstation 4 Pro White Version',
-    image: '/images/playstation.jpg',
-    description:
-      'The ultimate home entertainment center starts with PlayStation. Whether you are into gaming, HD movies, television, music',
-    brand: 'Sony',
-    category: 'Electronics',
-    price: 399.99,
-    countInStock: 11,
-    rating: 5,
-    numReviews: 12,
-  },
-  {
-    
-    name: 'Logitech G-Series Gaming Mouse',
-    image: '/images/mouse.jpg',
-    description:
-      'Get a better handle on your games with this Logitech LIGHTSYNC gaming mouse. The six programmable buttons allow customization for a smooth playing experience',
-    brand: 'Logitech',
-    category: 'Electronics',
-    price: 49.99,
-    countInStock: 7,
-    rating: 3.5,
-    numReviews: 10,
-  },
-  {
-    
-    name: 'Amazon Echo Dot 3rd Generation',
-    image: '/images/alexa.jpg',
-    description:
-      'Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space',
-    brand: 'Amazon',
-    category: 'Electronics',
-    price: 29.99,
-    countInStock: 0,
-    rating: 4,
-    numReviews: 12,
-  },
-]
+];
 
 export default products;

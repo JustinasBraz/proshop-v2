@@ -29,7 +29,7 @@ export const CartScreen = () => {
 
   return  <Row>
     <Col md={8}>
-      <h1 style={{marginBottom: '20px'}}>FaShoppingCart</h1>
+      <h1 style={{marginBottom: '20px'}}>Shopping Cart</h1>
       {cartItems.length === 0 ? (
         <Message>
         Your cart is empty <Link to='/'>Go Back</Link>
@@ -46,7 +46,7 @@ export const CartScreen = () => {
               <Col md={3}>
                 <Link to= {`/product/${item._id}`}>{item.name}</Link>
               </Col>
-            <Col md={2}>{item.price}</Col>
+            <Col md={2}>€{item.price}</Col>
              <Col md={2}>
                <Form.Control 
                   as='select'
@@ -80,14 +80,14 @@ export const CartScreen = () => {
         <h2>
           Subtotal({cartItems.reduce((acc, item) => acc + item.qty, 0 )}) items
         </h2>
-        ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}
+        €{cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}
       </ListGroupItem>
       <ListGroupItem>
         <Button type='button' 
         className='btn-block'
         disabled={cartItems.length === 0}
         onClick={checkoutHandler}
-        >Procceed To Checkout</Button>
+        >Proceed to Checkout</Button>
       </ListGroupItem>
     </ListGroup>
   </Card>

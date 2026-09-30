@@ -5,10 +5,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
-import  SearchBox  from './SearchBox';
-import logo from '../assets/logo.png';
-
-
+import SearchBox from './SearchBox';
+import CoffeeLogo from './CoffeeLogo';
 const Header = () => {
 
 const  { cartItems } = useSelector((state) => state.cart);
@@ -27,28 +25,35 @@ const logoutHandler = async () => {
      navigate('/login');
 
     } catch (err) {
-        console.log(err);
+        // logout failed - stay on the current page
     }
     
 };
   return (
     <header>
-        <Navbar bg="dark" variant="dark" expand="mg" collapseOnSelect>
+        <Navbar className="koffiehuis-navbar" expand="lg" collapseOnSelect>
             <Container>
                 <LinkContainer to='/'>
-                <Navbar.Brand href='/'>
-                    <img src={logo} alt='ProShop' />
-                    ProShop</Navbar.Brand>
+                <Navbar.Brand href='/' className="koffiehuis-brand">
+                    <CoffeeLogo />
+                    <span className="brand-letters">
+                        {'Coffee House'.split('').map((letter, i) => (
+                            <span key={i} className="brand-letter" style={{ animationDelay: `${i * 0.15}s` }}>
+                                {letter === ' ' ? '\u00A0' : letter}
+                            </span>
+                        ))}
+                    </span>
+                </Navbar.Brand>
                     </LinkContainer>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className='ms-auto'>
                     <SearchBox />
                     <LinkContainer to='/cart'>
-                    <Nav.Link href="/cart"><FaShoppingCart />Cart
+                    <Nav.Link href="/cart"><FaShoppingCart /> Cart
                     
                        {cartItems.length > 0 && (
-                            <Badge pill bg='success' style={{marginLeft: '5px'}}>
+                            <Badge pill className="koffiehuis-badge" style={{marginLeft: '5px'}}>
                                 { cartItems.reduce((a, c) => a + c.qty, 0)}
 
                             </Badge>
@@ -67,7 +72,7 @@ const logoutHandler = async () => {
                         </NavDropdown>
                     ): ( <LinkContainer to='/login'>
                         <Nav.Link href="/login">
-                            <FaUser />Sign In</Nav.Link>
+                            <FaUser /> Sign In</Nav.Link>
                    </LinkContainer>
                    ) }  
                    {userInfo && userInfo.isAdmin && (

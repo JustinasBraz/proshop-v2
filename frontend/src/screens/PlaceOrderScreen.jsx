@@ -18,20 +18,20 @@ import { clearCartItems } from '../slices/cartSlice';
  const [createOrder, { isLoading, error }] = useCreateOrderMutation();
 
  useEffect(() => {
-  if (!cart.shippingAdress.adress) {
+  if (!cart.shippingAdress.address) {
     navigate('/shipping');
 
   } else  if (!cart.paymentMethod){
     navigate('/payment');
 
   }
- }, [cart.paymentMethod, cart.shippingAdress.adress, navigate]);
+ }, [cart.paymentMethod, cart.shippingAdress.address, navigate]);
 
  const placeOrderHandler = async () => {
   try {
     const res = await createOrder({
       orderItems: cart.cartItems,
-      shippingAdress: cart.shippingAdress,
+      shippingAddress: cart.shippingAdress,
       paymentMethod: cart.paymentMethod,
       itemsPrice: cart.itemsPrice,
       shippingPrice: cart.shippingPrice,
@@ -58,7 +58,7 @@ import { clearCartItems } from '../slices/cartSlice';
             <h2>Shipping Adress</h2>
             <p>
               <strong>Adress:</strong>
-            {cart.shippingAdress.adress},  {cart.shippingAdress.city}{''}
+            {cart.shippingAdress.address},  {cart.shippingAdress.city}{''}
              {cart.shippingAdress.postalCode},{''}
               {cart.shippingAdress.country}
             </p>
@@ -85,12 +85,12 @@ import { clearCartItems } from '../slices/cartSlice';
                     fluid rounded />
                   </Col>
                   <Col>
-                  <Link to={`products/${item.product}`}>
+                  <Link to={`/product/${item.product}`}>
                     {item.name}
                   </Link>
                   </Col>
                   <Col md={4}>
-                    {item.qty} x ${item.price} = ${item.qty * item.price}
+                    {item.qty} x €{item.price} = €{item.qty * item.price}
                   </Col>
                 </Row>
 
@@ -115,7 +115,7 @@ import { clearCartItems } from '../slices/cartSlice';
               <Row>
                 <Col>Items:</Col>
                  <Col>
-                 ${cart.itemsPrice}
+                 €{cart.itemsPrice}
                  </Col>
               </Row>
             </ListGroup.Item>
@@ -123,7 +123,7 @@ import { clearCartItems } from '../slices/cartSlice';
               <Row>
                 <Col>Shipping:</Col>
                  <Col>
-                 ${cart.shippingPrice}
+                 €{cart.shippingPrice}
                  </Col>
               </Row>
             </ListGroup.Item>
@@ -131,16 +131,16 @@ import { clearCartItems } from '../slices/cartSlice';
               <Row>
                 <Col>Tax:</Col>
                  <Col>
-                 ${cart.taxPrice}
+                 €{cart.taxPrice}
                  </Col>
               </Row>
             </ListGroup.Item>
 
             <ListGroup.Item>
               <Row>
-                <Col>Toatl:</Col>
+                <Col>Total:</Col>
                  <Col>
-                 ${cart.totalPrice}
+                 €{cart.totalPrice}
                  </Col>
               </Row>
 
@@ -160,7 +160,7 @@ import { clearCartItems } from '../slices/cartSlice';
               onClick={placeOrderHandler}
 
               >
-                Place Order
+                Bestelling plaatsen
               </Button>
               {isLoading && <Loader />}
             </ListGroup.Item> 
